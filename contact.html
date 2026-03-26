@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Rochelle's Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #fff5f7;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 80px; /* Space for the fixed badge */
+        }
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ff6b9d;
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+        .logo:hover {
+            opacity: 0.8;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        nav ul li {
+            margin-left: 30px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        nav ul li a:hover {
+            color: #ff6b9d;
+        }
+        nav ul li a.active {
+            color: #ff6b9d;
+        }
+        nav ul li a.active::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: #ff6b9d;
+            bottom: -5px;
+            left: 0;
+        }
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: #ff6b9d;
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 30px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .page-title {
+            font-size: 64px;
+            font-weight: 700;
+            color: #333;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        .page-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: #ff6b9d;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .contact-container {
+            max-width: 800px;
+            background-color: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .contact-subtitle {
+            font-size: 28px;
+            font-weight: 600;
+            color: #ff6b9d;
+            margin-bottom: 20px;
+        }
+        .contact-description {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .social-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #fff5f7;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff6b9d;
+            font-size: 24px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.1);
+        }
+        .social-icon:hover {
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255, 107, 157, 0.3);
+        }
+        .btn {
+            display: inline-block;
+            background-color: #ff6b9d;
+            color: white;
+            padding: 14px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+        }
+        .btn:hover {
+            background-color: #ff5a87;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
+        }
+        .btn i {
+            margin-left: 8px;
+        }
+        /* Decorative Elements */
+        .circle-decoration {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(255, 107, 157, 0.1);
+            z-index: -1;
+        }
+        .circle-1 {
+            width: 200px;
+            height: 200px;
+            top: -80px;
+            left: -80px;
+        }
+        .circle-2 {
+            width: 150px;
+            height: 150px;
+            bottom: -50px;
+            right: -50px;
+        }
+        .circle-3 {
+            width: 100px;
+            height: 100px;
+            top: 50%;
+            right: -30px;
+        }
+        /* Fixed Badge */
+        .fixed-badge {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #ff6b9d;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4);
+            z-index: 1000;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .fixed-badge:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(255, 107, 157, 0.5);
+        }
+        .fixed-badge i {
+            color: white;
+            font-size: 24px;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                padding: 15px;
+            }
+            nav ul {
+                margin-top: 15px;
+            }
+            nav ul li {
+                margin: 0 10px;
+            }
+            .page-title {
+                font-size: 48px;
+            }
+            .contact-container {
+                padding: 30px;
+            }
+            .contact-subtitle {
+                font-size: 24px;
+            }
+            .social-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+        }
+        @media (max-width: 576px) {
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            nav ul li {
+                margin: 5px 10px;
+            }
+            .page-title {
+                font-size: 36px;
+            }
+            .contact-container {
+                padding: 20px;
+            }
+            .contact-subtitle {
+                font-size: 22px;
+            }
+            .contact-description {
+                font-size: 16px;
+            }
+            .social-icons {
+                gap: 20px;
+            }
+            .social-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">ROCHELLE</a>
+            <nav>
+                <ul>
+                    <li><a href="education.html">Education</a></li>
+                    <li><a href="experience.html">Experience</a></li>
+                    <li><a href="certifications.html">Certifications</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="achievements.html">Achievements</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Decorative Circles -->
+        <div class="circle-decoration circle-1"></div>
+        <div class="circle-decoration circle-2"></div>
+        <div class="circle-decoration circle-3"></div>
+
+        <h1 class="page-title">CONTACT</h1>
+
+        <div class="contact-container">
+            <h2 class="contact-subtitle">Get in Touch</h2>
+            <p class="contact-description">
+                I'm always interested in hearing about new projects and opportunities. 
+                Whether you have a question or just want to say hi, feel free to reach out!
+            </p>
+            
+            <div class="social-icons">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=rochb1509@gmail.com" target="_blank" class="social-icon">
+                    <img src="icons8-gmail-100.png" alt="Gmail"></a>
+
+                <a href="https://www.linkedin.com/in/rochellebruno" class="social-icon"><img src="icons8-linkedin-100.png" alt="LinkedIn"></img></a>
+                <a href="https://github.com/rochb005" class="social-icon"><img src="icons8-github-100.png" alt="GitHub"></img></a>
+            </div>
+            
+            <a href="RochelleBruno_CV(2026).pdf" class="btn">Download Resume <i class="fas fa-download"></i></a>
+        </div>
+    </main>
+
+    <!-- Fixed Badge in Bottom Right Corner -->
+    <div class="fixed-badge">
+        <i class="fas fa-phone"></i>
+    </div>
+</body>
+</html>

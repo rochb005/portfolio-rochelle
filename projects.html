@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certifications - Rochelle's Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #fff5f7;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 80px; /* Space for the fixed badge */
+        }
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ff6b9d;
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+        .logo:hover {
+            opacity: 0.8;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        nav ul li {
+            margin-left: 30px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        nav ul li a:hover {
+            color: #ff6b9d;
+        }
+        nav ul li a.active {
+            color: #ff6b9d;
+        }
+        nav ul li a.active::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: #ff6b9d;
+            bottom: -5px;
+            left: 0;
+        }
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: #ff6b9d;
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 30px;
+            position: relative;
+        }
+        .page-title {
+            font-size: 64px;
+            font-weight: 700;
+            color: #333;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        .page-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: #ff6b9d;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        /* Certifications Container */
+        .certifications-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        .cert-box {
+            background-color: #ffd1dc; /* Light pink color for boxes */
+            border-radius: 15px;
+            padding: 30px;
+            width: 300px;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .cert-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        }
+        .cert-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+            align-self: center;
+        }
+        .cert-image {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 3px solid white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            align-items: center;
+        }
+        /* Decorative Elements */
+        .circle-decoration {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(255, 107, 157, 0.1);
+            z-index: -1;
+        }
+        .circle-1 {
+            width: 200px;
+            height: 200px;
+            top: -80px;
+            left: -80px;
+        }
+        .circle-2 {
+            width: 150px;
+            height: 150px;
+            bottom: -50px;
+            right: -50px;
+        }
+        .circle-3 {
+            width: 100px;
+            height: 100px;
+            top: 50%;
+            right: -30px;
+        }
+        /* Fixed Badge */
+        .fixed-badge {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #ff6b9d;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4);
+            z-index: 1000;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .fixed-badge:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(255, 107, 157, 0.5);
+        }
+
+        .fixed-badge i {
+            color: white;
+            font-size: 24px;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                padding: 15px;
+            }
+            nav ul {
+                margin-top: 15px;
+            }
+            nav ul li {
+                margin: 0 10px;
+            }
+            .page-title {
+                font-size: 48px;
+            }
+            .cert-box {
+                width: 250px;
+                height: 250px;
+            }
+            .cert-image {
+                width: 120px;
+                height: 120px;
+            }
+        }
+        @media (max-width: 576px) {
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            nav ul li {
+                margin: 5px 10px;
+            }
+            .page-title {
+                font-size: 36px;
+            }
+            .cert-box {
+                width: 200px;
+                height: 200px;
+                padding: 20px;
+            }
+            .cert-title {
+                font-size: 20px;
+            }
+            .cert-image {
+                width: 100px;
+                height: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">ROCHELLE</a>
+            <nav>
+                <ul>
+                    <li><a href="education.html">Education</a></li>
+                    <li><a href="experience.html">Experience</a></li>
+                    <li><a href="certifications.html" >Certifications</a></li>
+                    <li><a href="projects.html" class="active">Projects</a></li>
+                    <li><a href="achievements.html">Achievements</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <!-- Decorative Circles -->
+        <div class="circle-decoration circle-1"></div>
+        <div class="circle-decoration circle-2"></div>
+        <div class="circle-decoration circle-3"></div>
+        <h1 class="page-title">PROJECTS</h1>
+        <div class="certifications-container">
+            <div class="cert-box">
+                <h2 class="cert-title" style="font-size: 19px;">Calculator App</h2>
+                <a href="cal-project.html"><img src="cal-icon.jpg" alt="cal-icon" class="cert-image"></a>
+            </div>
+            <div class="cert-box">
+                <h2 class="cert-title" style="font-size: 19px;">Coming Soon!</h2>
+            </div>
+            
+        </div>
+    </main>
+    <!-- Badge -->
+    <div class="fixed-badge">
+        <i class="fas fa-terminal"></i>
+    </div>
+</body>
+</html>
