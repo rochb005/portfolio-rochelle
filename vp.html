@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vice President Selection - Rochelle's Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #fff5f7;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 80px; 
+        }
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ff6b9d;
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+        .logo:hover { opacity: 0.8; }
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-left: 30px; }
+        nav ul li a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        nav ul li a:hover, nav ul li a.active { color: #ff6b9d; }
+        nav ul li a.active::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: #ff6b9d;
+            bottom: -5px;
+            left: 0;
+        }
+        
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 30px;
+            position: relative;
+        }
+        .page-title {
+            font-size: 64px;
+            font-weight: 700;
+            color: #333;
+            text-align: left;
+            margin-bottom: 60px;
+            position: relative;
+            margin-top: 80px; 
+        }
+
+        /* Certificate / Image Layout Styles */
+        .certificate-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 60px;
+            justify-content: left;
+        }
+        .certificate-image-container {
+            flex: 1;
+            min-width: 600px;
+            max-width: 600px;
+        }
+        .single-image-frame {
+            width: 100%;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            background: white;
+            border: 5px solid white;
+        }
+        .single-image-frame img {
+            width: 100%;
+            display: block;
+            border-radius: 10px;
+        }
+
+        /* Details Card */
+        .certificate-details {
+            flex: 1;
+            min-width: 500px;
+            max-width: 500px;
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            align-self: center;
+        }
+        .detail-title {
+            font-size: 28px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+        }
+        .detail-title i { color: #ff6b9d; margin-right: 15px; font-size: 32px; }
+        .detail-item { margin-bottom: 20px; display: flex; flex-direction: column; }
+        .detail-label {
+            font-weight: 600;
+            color: #ff6b9d;
+            margin-bottom: 5px;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .detail-value { font-size: 18px; }
+        .detail-description { margin-top: 25px; padding-top: 20px; border-top: 1px solid #f0f0f0; }
+
+        /* Decorative Elements */
+        .circle-decoration {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(255, 107, 157, 0.1);
+            z-index: -1;
+        }
+        .circle-1 { width: 200px; height: 200px; top: -80px; left: -80px; }
+        .circle-2 { width: 150px; height: 150px; bottom: -50px; right: -50px; }
+        .circle-3 { width: 100px; height: 100px; top: 50%; right: -30px; }
+
+        /* Navigation Buttons */
+        .fixed-badge {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #ff6b9d;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4);
+            z-index: 1000;
+        }
+        .fixed-badge i { color: white; font-size: 24px; }
+        .back-button {
+            position: absolute;
+            top: 30px;
+            left: -30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: #ff6b9d;
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(255, 107, 157, 0.3);
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        .back-button:hover { transform: scale(1.1); background-color: #ff5a87; }
+
+        @media (max-width: 768px) {
+            .certificate-container { flex-direction: column; }
+            .certificate-image-container, .certificate-details { max-width: 100%; min-width: 100%; }
+            .back-button { left: 10px; top: 10px; }
+            .page-title { font-size: 42px; margin-top: 60px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">ROCHELLE</a>
+            <nav>
+                <ul>
+                    <li><a href="education.html">Education</a></li>
+                    <li><a href="experience.html">Experience</a></li>
+                    <li><a href="certifications.html">Certifications</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="achievements.html" class="active">Achievements</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="circle-decoration circle-1"></div>
+        <div class="circle-decoration circle-2"></div>
+        <div class="circle-decoration circle-3"></div>
+        
+        <a href="achievements.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        
+        <h1 class="page-title">Selected Vice President of CyberAI Club</h1>
+
+        <div class="certificate-container">
+            <div class="certificate-image-container">
+                <div class="single-image-frame">
+                    <img src="vp.jpeg" alt="CyberAI Club Vice President Inauguration / Investiture Photo">
+                </div>
+            </div>
+
+            <div class="certificate-details">
+                <h2 class="detail-title">
+                    <i class="fas fa-users-cog"></i>
+                    Leadership Details
+                </h2>
+                <div class="detail-content">
+                    <div class="detail-item">
+                        <div class="detail-label">Appointed Role:</div>
+                        <div class="detail-value">Club Vice President</div>
+                    </div> 
+                    <div class="detail-item">
+                        <div class="detail-label">Organization:</div>
+                        <div class="detail-value">Amity University Dubai</div>
+                    </div>     
+                    <div class="detail-description">
+                        <div class="detail-label">Description</div>
+                        <div class="detail-value">
+                            Officially elected to executive leadership as the Vice President of the CyberAI Club. This cornerstone leadership role focuses on steering student-led initiatives at the intersection of emerging artificial intelligence technologies and fundamental cybersecurity architectures.<br><br>
+                            In this capacity, I am responsible for guiding operational strategies, orchestrating technical workshops, and managing collaborative projects centered around defensive machine learning frameworks and intelligent vulnerability mitigation. This appointment highlights strong executive execution and a committed initiative to foster a rigorous tech ecosystem on campus.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="fixed-badge">
+        <i class="fas fa-medal"></i>
+    </div>
+</body>
+</html>
